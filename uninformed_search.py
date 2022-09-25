@@ -16,16 +16,20 @@ class SearchNode:
 
 # you might write other helper functions, too. For example,
 #  I like to separate out backchaining, and the dfs path checking functions
+
+# input: goal SearchNode, once reached
+# output: list, representing the path taken from start to goal state
 def backchain(node):
-    path = []
-    curr_node = node
+    path = []                           # the path resulting from backchaining
+    curr_node = node                    # goal node
 
     while curr_node:
         curr_state = curr_node.state
-        path.append(curr_state)
-        curr_node = curr_node.parent
+        path.append(curr_state)         # add the state to the path
+        curr_node = curr_node.parent    # move on to parent node
 
-    solution = []
+    # reverse the path we backchained
+    solution = []                       # solution path from start to goal state
     i = len(path) - 1
     while i >= 0:
         solution.append(path[i])
@@ -34,7 +38,10 @@ def backchain(node):
     return solution
 
 
-
+# input: the problem containing relevant information, a FoxProblem object
+# output: 
+#        * on success: list, representing the path taken from start to goal state
+#        * on failure: empty list
 def bfs_search(search_problem):
     frontier = deque()
     start_node = SearchNode(search_problem.start_state)
@@ -44,20 +51,23 @@ def bfs_search(search_problem):
     visited = {}
 
     while frontier:
-        curr_node = frontier.popleft()  # getting the first added state
+        curr_node = frontier.popleft()  # getting the first added state, FIFO
         curr_state = curr_node.state
 
+        # using the problem's goal test function to check if we reached the goal
         if search_problem.goal_test(curr_state):
-            return backchain(curr_node)
+            return backchain(curr_node)                     # success
         
+        # adding the checked state into the dict with irrelevant, empty string as value
         visited[curr_state] = ''
+        # get the successors to visit
         children = search_problem.get_successors(curr_state)
         for child in children:
             if child not in visited:
-                child_node = SearchNode(child, curr_node)
+                child_node = SearchNode(child, curr_node)   # create a successor node to add to the frontier
                 frontier.append(child_node)
     
-    return None 
+    return []                                               # failure
 
 
 # Don't forget that your dfs function should be recursive and do path checking,

@@ -56,6 +56,6 @@ class FoxProblem:
 ## A bit of test code
 
 if __name__ == "__main__":
-    test_cp = FoxProblem((5, 5, 1))
+    test_cp = FoxProblem((5, 4, 1))
     print(test_cp.get_successors((5, 5, 1)))
     print(test_cp)

@@ -1,3 +1,7 @@
-# Chicken and Foxes AI
+# Programming Assignment 1: Chickens and Foxes
 
-An AI built from scratch using uninformed search to solve variations of the chicken and fox puzzle.
+COSC76: Artificial Intelligence
+
+## Bansharee Ireen
+
+Using uninformed search to solve variations of the chicken and fox puzzle.
