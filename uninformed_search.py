@@ -43,15 +43,18 @@ def backchain(node):
 #        * on success: list, representing the path taken from start to goal state
 #        * on failure: empty list
 def bfs_search(search_problem):
-    frontier = deque()
     start_node = SearchNode(search_problem.start_state)
-    frontier.append(start_node)
 
-    # setting up the SearchSolution obj
-    solution = SearchSolution(search_problem, "bfs")
+    # deque used as FIFO queue to hold the nodes in order
+    frontier = deque()
+    frontier.append(start_node)
 
     # set to store visited states in
     visited = set()
+    visited.add(search_problem.start_state)
+
+    # setting up the SearchSolution obj
+    solution = SearchSolution(search_problem, "BFS")
 
     while frontier:
         curr_node = frontier.popleft()  # getting the first added state, FIFO
@@ -87,6 +90,8 @@ def dfs_search(search_problem, depth_limit=100, node=None, solution=None):
     if node == None:
         node = SearchNode(search_problem.start_state)
         solution = SearchSolution(search_problem, "DFS")
+
+    
     
 
 

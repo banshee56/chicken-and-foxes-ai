@@ -2,6 +2,7 @@ from FoxProblem import FoxProblem
 from uninformed_search import bfs_search#, dfs_search, ids_search
 
 # Create a few test problems:
+problem111 = FoxProblem((1, 1, 1))
 problem221 = FoxProblem((2, 2, 1))
 problem321 = FoxProblem((3, 2, 1))
 problem331 = FoxProblem((3, 3, 1))
@@ -12,6 +13,8 @@ problem551 = FoxProblem((5, 5, 1))
 #  Each of the search algorithms should return a SearchSolution object,
 #  even if the goal was not found. If goal not found, len() of the path
 #  in the solution object should be 0.
+
+print(bfs_search(problem111))
 
 print(bfs_search(problem221))
 
