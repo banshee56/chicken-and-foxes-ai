@@ -18,7 +18,7 @@ class SearchNode:
 #  I like to separate out backchaining, and the dfs path checking functions
 
 # input: goal SearchNode, once reached
-# output: list, representing the path taken from start to goal state
+# output: list/SearchSolution object path, representing the path taken from start to goal state
 def backchain(node):
     path = []                           # the path resulting from backchaining
     curr_node = node                    # goal node
@@ -47,6 +47,9 @@ def bfs_search(search_problem):
     start_node = SearchNode(search_problem.start_state)
     frontier.append(start_node)
 
+    # setting up the SearchSolution obj
+    solution = SearchSolution(search_problem, "bfs")
+
     # set to store visited states in
     visited = set()
 
@@ -56,7 +59,9 @@ def bfs_search(search_problem):
 
         # using the problem's goal test function to check if we reached the goal
         if search_problem.goal_test(curr_state):
-            return backchain(curr_node)                     # success
+            solution.path = backchain(curr_node)            # success
+            solution.nodes_visited = len(visited)
+            return solution
         
         # get the successors to visit
         children = search_problem.get_successors(curr_state)
@@ -67,7 +72,8 @@ def bfs_search(search_problem):
                 child_node = SearchNode(child, curr_node)   # create a successor node to add to the frontier
                 frontier.append(child_node)
 
-    return []                                               # failure
+    solution.nodes_visited = len(visited)
+    return solution                                         # failure
 
 
 # Don't forget that your dfs function should be recursive and do path checking,
@@ -81,6 +87,8 @@ def dfs_search(search_problem, depth_limit=100, node=None, solution=None):
     if node == None:
         node = SearchNode(search_problem.start_state)
         solution = SearchSolution(search_problem, "DFS")
+    
+
 
     # you write this part
 
