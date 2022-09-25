@@ -47,8 +47,8 @@ def bfs_search(search_problem):
     start_node = SearchNode(search_problem.start_state)
     frontier.append(start_node)
 
-    # dictionary to store visited states in
-    visited = {}
+    # set to store visited states in
+    visited = set()
 
     while frontier:
         curr_node = frontier.popleft()  # getting the first added state, FIFO
@@ -58,14 +58,12 @@ def bfs_search(search_problem):
         if search_problem.goal_test(curr_state):
             return backchain(curr_node)                     # success
         
-        if curr_state not in visited:
-            # adding the checked state into the dict with irrelevant, empty string as value
-            visited[curr_state] = ''
+        # get the successors to visit
+        children = search_problem.get_successors(curr_state)
 
-            # get the successors to visit
-            children = search_problem.get_successors(curr_state)
-
-            for child in children:
+        for child in children:
+            if child not in visited:
+                visited.add(child)
                 child_node = SearchNode(child, curr_node)   # create a successor node to add to the frontier
                 frontier.append(child_node)
 
