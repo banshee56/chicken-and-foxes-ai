@@ -58,15 +58,17 @@ def bfs_search(search_problem):
         if search_problem.goal_test(curr_state):
             return backchain(curr_node)                     # success
         
-        # adding the checked state into the dict with irrelevant, empty string as value
-        visited[curr_state] = ''
-        # get the successors to visit
-        children = search_problem.get_successors(curr_state)
-        for child in children:
-            if child not in visited:
+        if curr_state not in visited:
+            # adding the checked state into the dict with irrelevant, empty string as value
+            visited[curr_state] = ''
+
+            # get the successors to visit
+            children = search_problem.get_successors(curr_state)
+
+            for child in children:
                 child_node = SearchNode(child, curr_node)   # create a successor node to add to the frontier
                 frontier.append(child_node)
-    
+
     return []                                               # failure
 
 
