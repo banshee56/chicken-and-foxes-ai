@@ -4,6 +4,7 @@ class FoxProblem:
         self.goal_state = (0, 0, 0)
         self.chickens = start_state[0]
         self.foxes = start_state[1]
+        self.curr_depth = 0
         # you might want to add other things to the problem,
         #  like the total number of chickens (which you can figure out
         #  based on start_state
@@ -23,6 +24,7 @@ class FoxProblem:
         else:
             move_b = 1
 
+        # possible moves when choosing 2 animals to move across the river
         moves = [(1, 0), (2, 0), (1, 1), (0, 1), (0, 2)]
 
         for move in moves:
@@ -36,7 +38,7 @@ class FoxProblem:
             else:
                 res = ((chickens+move_c), (foxes+move_f), move_b)
 
-            # if the subtraction produces a valid tuple
+            # if the addition/subtraction produces a valid tuple
             if 0 <= res[0] and res[0] <= self.chickens and 0 <= res[1] and res[1] <= self.foxes:
                 # if none of the chickens are eaten
                 if (res[0] >= res[1] or res[0] == 0) and (self.chickens-res[0] >= self.foxes-res[1] or self.chickens-res[0]==0):

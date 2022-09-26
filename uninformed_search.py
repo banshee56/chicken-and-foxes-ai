@@ -85,19 +85,25 @@ def bfs_search(search_problem):
 # We pass the solution along to each new recursive call to dfs_search
 #  so that statistics like number of nodes visited or recursion depth
 #  might be recorded
-def dfs_search(search_problem, depth_limit=100, node=None, solution=None):
-    # if no node object given, create a new search from starting state
-    if node == None:
-        node = SearchNode(search_problem.start_state)
-        solution = SearchSolution(search_problem, "DFS")
+# def dfs_search(search_problem, depth_limit=100, node=None, solution=None):
+#     # if no node object given, create a new search from starting state
+#     if node == None:
+#         node = SearchNode(search_problem.start_state)
+#         solution = SearchSolution(search_problem, "DFS")
 
-    
-    
+#     # base case 1: failure to find solution within depth_limit
+#     if search_problem.curr_depth > depth_limit:
+#         return solution     # NOT SURE WHAT TO RETURN HERE
+        
+#     # base case 2: success
+#     if search_problem.goal_test(node):
+#         return solution
 
-
+#     search_problem.curr_depth += 1
     # you write this part
-
 
 
 # def ids_search(search_problem, depth_limit=100):
     # you write this part
+    
+
