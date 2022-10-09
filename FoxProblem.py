@@ -1,18 +1,21 @@
+# Name: Bansharee Ireen
+#
+# Description: A definition for the search_problem class
+# 
+# 30 Sep 2022
+# COSC76, Fall 2022
+
+from collections import deque
+
 class FoxProblem:
     def __init__(self, start_state=(3, 3, 1)):
         self.start_state = start_state
         self.goal_state = (0, 0, 0)
-        self.chickens = start_state[0]
-        self.foxes = start_state[1]
-        self.curr_depth = 0
-        # you might want to add other things to the problem,
-        #  like the total number of chickens (which you can figure out
-        #  based on start_state
-
+        self.chickens = start_state[0]      # number of chickens on the shore we're focusing on
+        self.foxes = start_state[1]         # number of foxes on the shore we're focusing on
+        
     # get successor states for the given state
     def get_successors(self, state):
-        # you write this part. I also had a helper function
-        #  that tested if states were safe before adding to successor list
         successors = []
 
         chickens = state[0]
@@ -25,7 +28,7 @@ class FoxProblem:
             move_b = 1
 
         # possible moves when choosing 2 animals to move across the river
-        moves = [(1, 0), (2, 0), (1, 1), (0, 1), (0, 2)]
+        moves = [(2, 0), (1, 0), (1, 1), (0, 1), (0, 2)]
 
         for move in moves:
             move_c = move[0]
